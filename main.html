@@ -7,25 +7,42 @@
 </head>
 
 <body>	
-	<script>
-		function secondHighest(arr) {
-			//Write your code here
-			
-		}
+	    <script>
+        function secondHighest(arr) {
+            if (arr.length < 2) {
+                // If the array has less than 2 elements, return -Infinity
+                return -Infinity;
+            }
 
-		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
-			}
-			alert(secondHighest(arr));
-		}
-		Main();
-	</script>
+            // Convert the array elements to numbers
+            arr = arr.map(Number);
 
-    <script type="text/javascript" src="./script.js">
-</script>
+            // Use a Set to get unique elements
+            const uniqueElements = new Set(arr);
+
+            if (uniqueElements.size < 2) {
+                // If there are fewer than 2 unique elements, return -Infinity
+                return -Infinity;
+            }
+
+            // Convert the Set to an array and sort it in descending order
+            const sortedUnique = Array.from(uniqueElements).sort((a, b) => b - a);
+
+            // The second-highest element is at index 1
+            return sortedUnique[1];
+        }
+
+        function Main() {
+            var n = parseInt(prompt("Enter the number of elements"));
+            var arr = [];
+            for (var i = 0; i < n; i++) {
+                arr[i] = prompt("Enter element " + (i + 1));
+            }
+            alert(secondHighest(arr));
+        }
+
+        Main();
+    </script>
 
 </body>
 
